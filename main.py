@@ -20,7 +20,7 @@ info1 = pd.read_csv('Assig1-Dataset/info_1.csv')
 info2 = pd.read_csv('Assig1-Dataset/info_2.csv')
 
 
-def train(data):
+def unpack(data):
     X = data.values[:,:-1]
     Y = data.values[:,-1:]
     return X,Y
