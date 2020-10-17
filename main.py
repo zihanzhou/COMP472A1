@@ -9,6 +9,7 @@ from sklearn.metrics import plot_confusion_matrix
 from sklearn.metrics import classification_report
 from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import GridSearchCV
+import collections
 
 train_1 = pd.read_csv('Assig1-Dataset/train_1.csv')
 valid_1 = pd.read_csv('Assig1-Dataset/val_1.csv')
@@ -108,7 +109,7 @@ def Base_MLP():
     Save("Base-MLP-DS2", df, mode='a')
 
 def Best_MLP():
-    mlp = MLPClassifier(max_iter=100)
+    mlp = MLPClassifier(max_iter=200)
     parameter_space = {
         'hidden_layer_sizes': [(10, 10, 50), (30, 50)],
         'activation': ['identity', 'logistic', 'tanh', 'relu'],
@@ -148,3 +149,15 @@ def Best_MLP():
 #Base_MLP()
 #Best_MLP()
 
+
+def distribution_plot(dataset, filename):
+    X,y = unpack(dataset)
+    counter = collections.Counter(y)
+    labels = list(counter.keys())
+    frequency = list(counter.values())
+    plt.pie(frequency, labels = labels)
+    plt.title(filename)
+    plt.savefig('distribution plot/' + filename + '.png')
+
+
+#distribution_plot(valid_2,"validation2")
