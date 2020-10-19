@@ -1,18 +1,14 @@
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import sklearn
 import sklearn.metrics
 from sklearn.linear_model import Perceptron
-from sklearn.metrics import confusion_matrix
 from sklearn.metrics import plot_confusion_matrix
 from sklearn.metrics import classification_report
 from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import GridSearchCV
 import collections
-
 from sklearn.naive_bayes import GaussianNB
-from sklearn import tree
 from sklearn.tree import DecisionTreeClassifier
 
 
@@ -64,6 +60,7 @@ def prediction(model, test, filename):
 def GNB():
     X, y = unpack(train_1)
     model1 = GaussianNB().fit(X, y)
+
     X_valid, y_valid = unpack(valid_1)
     y_predict = model1.predict(X_valid)
     score = Score(y_valid, y_predict)
@@ -89,10 +86,10 @@ def GNB():
 
 def BaseDt():
     X, y = unpack(train_1)
-    model1 = tree.DecisionTreeClassifier().fit(X, y)
+    model1 = DecisionTreeClassifier().fit(X, y)
+
     X_valid,y_valid = unpack(valid_1)
     y_predict = model1.predict(X_valid)
-
     score = Score(y_valid, y_predict)
     print(f'BaseDt DS1 Score: {score}')
 
@@ -102,10 +99,10 @@ def BaseDt():
     Save("BaseDt-DS1", df, mode='a')
 
     X, y = unpack(train_2)
-    model2 = tree.DecisionTreeClassifier().fit(X, y)
+    model2 = DecisionTreeClassifier().fit(X, y)
+
     X_valid, y_valid = unpack(valid_2)
     y_predict = model2.predict(X_valid)
-
     score = Score(y_valid, y_predict)
     print(f'BaseDt DS2 Score: {score}')
 
@@ -115,13 +112,22 @@ def BaseDt():
     Save("BaseDt-DS2", df, mode='a')
 
 
-def BestDt(_criterion, _splitter, _min_sample_split, _min_imprity_decrease, _class_weight):
+def BestDt():
+    dtc = DecisionTreeClassifier()
+    parameter_space = {
+        'criterion': ['gini', 'entropy'],
+        'max_depth': [None, 10],
+        'min_samples_split': [0.1, 0.2, 3],
+        'min_impurity_decrease' : [0.0, 1.0, 2.0],
+        'class_weight' : ['balanced', None]
+    }
     X, y = unpack(train_1)
-    model1 = tree.DecisionTreeClassifier(criterion= _criterion, splitter=_splitter, min_samples_split=_min_sample_split,
-                                         min_impurity_decrease=_min_imprity_decrease, class_weight=_class_weight).fit(X, y)
+    model1 = GridSearchCV(dtc, parameter_space, n_jobs=-1)
+    model1.fit(X, y)
+    print(model1.best_params_)
+
     X_valid, y_valid = unpack(valid_1)
     y_predict = model1.predict(X_valid)
-
     score = Score(y_valid, y_predict)
     print(f'BestDt DS1 Score: {score}')
 
@@ -131,11 +137,12 @@ def BestDt(_criterion, _splitter, _min_sample_split, _min_imprity_decrease, _cla
     Save("BestDt-DS1", df, mode='a')
 
     X, y = unpack(train_2)
-    model2 = tree.DecisionTreeClassifier(criterion= _criterion, splitter=_splitter, min_samples_split=_min_sample_split,
-                                         min_impurity_decrease=_min_imprity_decrease, class_weight=_class_weight).fit(X, y)
+    model2 = GridSearchCV(dtc, parameter_space, n_jobs=-1)
+    model2.fit(X, y)
+    print(model2.best_params_)
+
     X_valid, y_valid = unpack(valid_2)
     y_predict = model2.predict(X_valid)
-
     score = Score(y_valid, y_predict)
     print(f'BestDt DS2 Score: {score}')
 
@@ -240,10 +247,10 @@ def Best_MLP():
     df = confusionmatrix(test_labels_2, model2, "Best-MLP-DS2")
     Save("Best-MLP-DS2", df, mode='a')
 
-
-# GNB()
+#GNB()
 #BaseDt()
-BestDt("entropy", "random", 1.0, 1.0, "balanced")
+BestDt()
+
 # PER()
 # Base_MLP()
 # Best_MLP()
