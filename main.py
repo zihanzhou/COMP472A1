@@ -9,6 +9,7 @@ from sklearn.metrics import plot_confusion_matrix
 from sklearn.metrics import classification_report
 from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import GridSearchCV
+import collections
 
 from sklearn.naive_bayes import GaussianNB
 from sklearn import tree
@@ -203,7 +204,7 @@ def Base_MLP():
 
 
 def Best_MLP():
-    mlp = MLPClassifier(max_iter=100)
+    mlp = MLPClassifier(max_iter=200)
     parameter_space = {
         'hidden_layer_sizes': [(10, 10, 50), (30, 50)],
         'activation': ['identity', 'logistic', 'tanh', 'relu'],
@@ -247,3 +248,15 @@ BestDt("entropy", "random", 1.0, 1.0, "balanced")
 # Base_MLP()
 # Best_MLP()
 
+
+def distribution_plot(dataset, filename):
+    X,y = unpack(dataset)
+    counter = collections.Counter(y)
+    labels = list(counter.keys())
+    frequency = list(counter.values())
+    plt.pie(frequency, labels = labels)
+    plt.title(filename)
+    plt.savefig('distribution plot/' + filename + '.png')
+
+
+#distribution_plot(valid_2,"validation2")
