@@ -20,7 +20,7 @@ test_no_labels_1 = pd.read_csv('Assig1-Dataset/test_no_label_1.csv')
 train_2 = pd.read_csv('Assig1-Dataset/train_2.csv')
 valid_2 = pd.read_csv('Assig1-Dataset/val_2.csv')
 test_labels_2 = pd.read_csv('Assig1-Dataset/test_with_label_2.csv')
-test_no_labels_2 = pd.read_csv('Assig1-Dataset/test_no_label_2.csv')
+test_no_labels_2 = pd.read_csv('Assig1-Dataset/2.csv')
 
 info1 = pd.read_csv('Assig1-Dataset/info_1.csv')
 info2 = pd.read_csv('Assig1-Dataset/info_2.csv')
@@ -79,7 +79,7 @@ def GNB():
     score = Score(y_valid, y_predict)
     print(f'GNB DS2 Score: {score}')
 
-    prediction(model1, test_no_labels_2, "GNB-DS2")
+    prediction(model2, test_no_labels_2, "GNB-DS2")
 
     df = confusionmatrix(test_labels_2, model2, "GNB-DS2")
     Save("GNB-DS2", df, mode='a')
@@ -181,7 +181,7 @@ def PER():
 
 
 def Base_MLP():
-    mlp = MLPClassifier(hidden_layer_sizes=(100,), activation='logistic', solver='sgd', max_iter=5000)
+    mlp = MLPClassifier(hidden_layer_sizes=(100,), activation='logistic', solver='sgd', max_iter=200)
 
     X, y = unpack(train_1)
     model1 = mlp.fit(X, y)
@@ -249,11 +249,11 @@ def Best_MLP():
 
 #GNB()
 #BaseDt()
-BestDt()
+#BestDt()
 
-# PER()
-# Base_MLP()
-# Best_MLP()
+#PER()
+#Base_MLP()
+#Best_MLP()
 
 
 def distribution_plot(dataset, filename):
@@ -267,3 +267,4 @@ def distribution_plot(dataset, filename):
 
 
 #distribution_plot(valid_2,"validation2")
+
