@@ -65,12 +65,12 @@ def GNB():
     X_valid, y_valid = unpack(valid_1)
     y_predict = model1.predict(X_valid)
     score = Score(y_valid, y_predict)
-    print(f'GNB Demo-English Score: {score}')
+    print(f'GNB DS1 Score: {score}')
 
-    prediction(model1, test_no_labels_1, "GNB-Demo-English")
+    prediction(model1, test_no_labels_1, "GNB-DS1")
 
-    df = confusionmatrix(test_labels_1, model1, "GNB-Demo-English")
-    Save("GNB-Demo-English", df, mode='a')
+    df = confusionmatrix(test_labels_1, model1, "GNB-DS1")
+    Save("GNB-DS1", df, mode='a')
 
     X,y = unpack(train_2)
     model2 = GaussianNB().fit(X, y)
@@ -78,12 +78,12 @@ def GNB():
     X_valid, y_valid = unpack(valid_2)
     y_predict = model2.predict(X_valid)
     score = Score(y_valid, y_predict)
-    print(f'GNB Demo-Greek Score: {score}')
+    print(f'GNB DS2 Score: {score}')
 
-    prediction(model2, test_no_labels_2, "GNB-Demo-Greek")
+    prediction(model2, test_no_labels_2, "GNB-DS2")
 
-    df = confusionmatrix(test_labels_2, model2, "GNB-Demo-Greek")
-    Save("GNB-Demo-Greek", df, mode='a')
+    df = confusionmatrix(test_labels_2, model2, "GNB-DS2")
+    Save("GNB-DS2", df, mode='a')
 
 def BaseDt():
     X, y = unpack(train_1)
@@ -92,12 +92,12 @@ def BaseDt():
     X_valid,y_valid = unpack(valid_1)
     y_predict = model1.predict(X_valid)
     score = Score(y_valid, y_predict)
-    print(f'BaseDt Demo-English Score: {score}')
+    print(f'BaseDt DS1 Score: {score}')
 
-    prediction(model1, test_no_labels_1, "BaseDt-Demo-English")
+    prediction(model1, test_no_labels_1, "BaseDt-DS1")
 
-    df = confusionmatrix(test_labels_1, model1, "BaseDt-Demo-English")
-    Save("BaseDt-Demo-English", df, mode='a')
+    df = confusionmatrix(test_labels_1, model1, "BaseDt-DS1")
+    Save("BaseDt-DS1", df, mode='a')
 
     X, y = unpack(train_2)
     model2 = DecisionTreeClassifier().fit(X, y)
@@ -105,12 +105,12 @@ def BaseDt():
     X_valid, y_valid = unpack(valid_2)
     y_predict = model2.predict(X_valid)
     score = Score(y_valid, y_predict)
-    print(f'BaseDt Demo-Greek Score: {score}')
+    print(f'BaseDt DS2 Score: {score}')
 
-    prediction(model2, test_no_labels_2, "BaseDt-Demo-Greek")
+    prediction(model2, test_no_labels_2, "BaseDt-DS2")
 
-    df = confusionmatrix(test_labels_2, model2, "BaseDt-Demo-Greek")
-    Save("BaseDt-Demo-Greek", df, mode='a')
+    df = confusionmatrix(test_labels_2, model2, "BaseDt-DS2")
+    Save("BaseDt-DS2", df, mode='a')
 
 
 def BestDt():
@@ -130,12 +130,12 @@ def BestDt():
     X_valid, y_valid = unpack(valid_1)
     y_predict = model1.predict(X_valid)
     score = Score(y_valid, y_predict)
-    print(f'BestDt Demo-English Score: {score}')
+    print(f'BestDt DS1 Score: {score}')
 
-    prediction(model1, test_no_labels_1, "BestDt-Demo-English")
+    prediction(model1, test_no_labels_1, "BestDt-DS1")
 
-    df = confusionmatrix(test_labels_1, model1, "BestDt-Demo-English")
-    Save("BestDt-Demo-English", df, mode='a')
+    df = confusionmatrix(test_labels_1, model1, "BestDt-DS1")
+    Save("BestDt-DS1", df, mode='a')
 
     X, y = unpack(train_2)
     model2 = GridSearchCV(dtc, parameter_space, n_jobs=-1)
@@ -145,12 +145,12 @@ def BestDt():
     X_valid, y_valid = unpack(valid_2)
     y_predict = model2.predict(X_valid)
     score = Score(y_valid, y_predict)
-    print(f'BestDt Demo-Greek Score: {score}')
+    print(f'BestDt DS2 Score: {score}')
 
-    prediction(model2, test_no_labels_2, "BestDt-Demo-Greek")
+    prediction(model2, test_no_labels_2, "BestDt-DS2")
 
-    df = confusionmatrix(test_labels_2, model2, "BestDt-Demo-Greek")
-    Save("BestDt-Demo-Greek", df, mode='a')
+    df = confusionmatrix(test_labels_2, model2, "BestDt-DS2")
+    Save("BestDt-DS2", df, mode='a')
 
 
 def PER():
@@ -160,12 +160,12 @@ def PER():
     X_valid, y_valid = unpack(valid_1)
     y_predict = model1.predict(X_valid)
     score = Score(y_valid, y_predict)
-    print(f'PER Demo-English Score: {score}')
+    print(f'PER DS1 Score: {score}')
 
-    prediction(model1, test_no_labels_1, "PER-Demo-English")
+    prediction(model1, test_no_labels_1, "PER-DS1")
 
-    df = confusionmatrix(test_labels_1, model1, "PER-Demo-English")
-    Save("PER-Demo-English", df, mode='a')
+    df = confusionmatrix(test_labels_1, model1, "PER-DS1")
+    Save("PER-DS1", df, mode='a')
 
     X, y = unpack(train_2)
     model2 = Perceptron().fit(X, y)
@@ -173,12 +173,12 @@ def PER():
     X_valid, y_valid = unpack(valid_2)
     y_predict = model2.predict(X_valid)
     score = Score(y_valid, y_predict)
-    print(f'PER Demo-Greek Score: {score}')
+    print(f'PER DS2 Score: {score}')
 
-    prediction(model1, test_no_labels_2, "PER-Demo-Greek")
+    prediction(model2, test_no_labels_2, "PER-DS2")
 
-    df = confusionmatrix(test_labels_2, model2, "PER-Demo-Greek")
-    Save("PER-Demo-Greek", df, mode='a')
+    df = confusionmatrix(test_labels_2, model2, "PER-DS2")
+    Save("PER-DS2", df, mode='a')
 
 
 def Base_MLP():
@@ -190,12 +190,12 @@ def Base_MLP():
     X_valid, y_valid = unpack(valid_1)
     y_predict = model1.predict(X_valid)
     score = Score(y_valid, y_predict)
-    print(f'Base-MLP Demo-English Score: {score}')
+    print(f'Base-MLP DS1 Score: {score}')
 
-    prediction(model1, test_no_labels_1, "Base-MLP-Demo-English")
+    prediction(model1, test_no_labels_1, "Base-MLP-DS1")
 
-    df = confusionmatrix(test_labels_1, model1, "Base-MLP-Demo-English")
-    Save("Base-MLP-Demo-English", df, mode='a')
+    df = confusionmatrix(test_labels_1, model1, "Base-MLP-DS1")
+    Save("Base-MLP-DS1", df, mode='a')
 
     X, y = unpack(train_2)
     model2 = mlp.fit(X, y)
@@ -203,12 +203,12 @@ def Base_MLP():
     X_valid, y_valid = unpack(valid_2)
     y_predict = model2.predict(X_valid)
     score = Score(y_valid, y_predict)
-    print(f'Base-MLP Demo-Greek Score: {score}')
+    print(f'Base-MLP DS2 Score: {score}')
 
-    prediction(model2, test_no_labels_2, "Base-MLP-Demo-Greek")
+    prediction(model2, test_no_labels_2, "Base-MLP-DS2")
 
-    df = confusionmatrix(test_labels_2, model2, "Base-MLP-Demo-Greek")
-    Save("Base-MLP-Demo-Greek", df, mode='a')
+    df = confusionmatrix(test_labels_2, model2, "Base-MLP-DS2")
+    Save("Base-MLP-DS2", df, mode='a')
 
 
 def Best_MLP():
@@ -226,12 +226,12 @@ def Best_MLP():
     X_valid, y_valid = unpack(valid_1)
     y_predict = model1.predict(X_valid)
     score = Score(y_valid, y_predict)
-    print(f'Best-MLP Demo-English Score: {score}')
+    print(f'Best-MLP DS1 Score: {score}')
 
-    prediction(model1, test_no_labels_1, "Best-MLP-Demo-English")
+    prediction(model1, test_no_labels_1, "Best-MLP-DS1")
 
-    df = confusionmatrix(test_labels_1, model1, "Best-MLP-Demo-English")
-    Save("Best-MLP-Demo-English", df, mode='a')
+    df = confusionmatrix(test_labels_1, model1, "Best-MLP-DS1")
+    Save("Best-MLP-DS1", df, mode='a')
 
     X, y = unpack(train_2)
     model2 = GridSearchCV(mlp, parameter_space, n_jobs=-1)
@@ -241,20 +241,21 @@ def Best_MLP():
     X_valid, y_valid = unpack(valid_2)
     y_predict = model2.predict(X_valid)
     score = Score(y_valid, y_predict)
-    print(f'Best-MLP Demo-Greek Score: {score}')
+    print(f'Best-MLP DS2 Score: {score}')
 
-    prediction(model2, test_no_labels_2, "Best-MLP-Demo-Greek")
+    prediction(model2, test_no_labels_2, "Best-MLP-DS2")
 
-    df = confusionmatrix(test_labels_2, model2, "Best-MLP-Demo-Greek")
-    Save("Best-MLP-Demo-Greek", df, mode='a')
+    df = confusionmatrix(test_labels_2, model2, "Best-MLP-DS2")
+    Save("Best-MLP-DS2", df, mode='a')
 
-#GNB()
-#BaseDt()
-#BestDt()
+GNB()
+BaseDt()
+BestDt()
 
-#PER()
-#Base_MLP()
+PER()
+Base_MLP()
 Best_MLP()
+
 
 
 def distribution_plot(dataset, filename):
